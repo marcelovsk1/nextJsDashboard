@@ -3,7 +3,7 @@
 import { custom, date, z } from 'zod' // biblioteca Zod para validação de dados
 import { sql } from '@vercel/postgres'; // interacao com banco de dados Postgres
 import { revalidatePath } from 'next/cache'; // função para revalidar a página
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation' // redireicionamento de página
 
 
 const FormSchema = z.object({
@@ -31,7 +31,6 @@ export async function createInvoice(formData: FormData) {
       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
     `;
   
-
-    revalidatePath('/dashboard/invoices');
-    redirect('/dashboard/invoices');
+    revalidatePath('/dashboard/invoices'); // revalida a página de invoices
+    redirect('/dashboard/invoices'); // redireciona o user para a página de invoices
 }
